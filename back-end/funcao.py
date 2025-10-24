@@ -60,7 +60,7 @@ def atualizar_filme(id_filme, nota):
             )
             conexao.commit()
         except Exception as erro:
-            print(f"Erro ao cadastar o filme {erro}")
+            print(f"Erro ao atualizar a nota do filme {erro}")
         finally:
             cursor.close()
             conexao.commit()
