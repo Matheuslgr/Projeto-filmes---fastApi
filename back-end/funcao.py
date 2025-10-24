@@ -44,7 +44,7 @@ def listar_filmes():
             )
             return cursor.fetchall()
         except Exception as erro:
-            print(f"Erro ao cadastrar o filme {erro}")
+            print(f"Erro ao listar os filmes {erro}")
             return []
         finally:
             cursor.close()
