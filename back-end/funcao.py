@@ -40,7 +40,7 @@ def listar_filmes():
     if conexao:
         try:
             cursor.execute(
-                "SELECT * FROM filmes"
+                "SELECT * FROM filmes ORDER BY id"
             )
             return cursor.fetchall()
         except Exception as erro:
@@ -50,13 +50,13 @@ def listar_filmes():
             cursor.close()
             conexao.commit()
 
-def atualizar_filme(id_filme, nota):
+def atualizar_filme(id_filme, nova_nota):
     conexao, cursor = conector()
     if conexao:
         try:
             cursor.execute(
                 "UPDATE filmes SET nota = %s WHERE id = %s",
-                (nota, id_filme)
+                (nova_nota, id_filme)
             )
             conexao.commit()
         except Exception as erro:
@@ -79,6 +79,3 @@ def remover_filme(id_filme):
         finally:
             cursor.close()
             conexao.commit()
-
-
-
