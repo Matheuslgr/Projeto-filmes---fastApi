@@ -79,3 +79,19 @@ def remover_filme(id_filme):
         finally:
             cursor.close()
             conexao.commit()
+
+def buscar_filme(id_filme):
+    conexao, cursor = conector()
+    if conexao:
+        try:
+            cursor.execute(
+                "SELECT * FROM filmes WHERE id = %s",
+                (id_filme,)
+            )
+            return cursor.fetchone()
+        except Exception as erro:
+            print(f"Erro ao buscar o filme. {erro}")
+            return[]
+        finally:
+            cursor.close()
+            conexao.commit()
