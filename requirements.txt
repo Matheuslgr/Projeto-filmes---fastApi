@@ -1,0 +1,8 @@
+
+dotenv==0.9.9
+fastapi==0.120.0
+mysql-connector-python==9.5.0
+requests==2.32.5
+streamlit==1.50.0
+uvicorn==0.38.0
+
