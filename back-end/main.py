@@ -42,9 +42,13 @@ def deletar_filme(id_filme: int):
         return {"erro": "Filme não encontrado"}
 
 
-@app.put("/attfilmes/{id_filme},{nova_nota}")
-def atualizar_filmes(id_filme: int, nova_nota: int):
-    funcao.atualizar_filme(id_filme, nova_nota)
-    return{"200": "Filmes atualizado."}
+@app.put("/filmes/{id_filme}")
+def atualizar_filmes(id_filme: int, nova_nota: float):
+    filme =  funcao.buscar_filme(id_filme)
+    if filme:
+        funcao.atualizar_filme(id_filme, nova_nota)
+        return{"200": "Filmes atualizado."}
+    else:
+        return{"Erro": "Filme não foi encontrado"}
 
 

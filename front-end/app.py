@@ -56,10 +56,19 @@ elif menu == "Deletar Filmes":
 elif menu == "Atualizar filmes":
     st.subheader(" Atualizar filmes")
     id_filme = st.number_input("Id do filme que deseja atualizar", min_value=1, step=1)
-    nova_nota = st.number_input("Digite a nova nota do Filme", min_value=1, step=1)
+    nova_nota = st.number_input("Digite a nova nota do Filme", min_value=0.0, max_value=10.0, step=0.5)
     if st.button("Atualizar"):
-        response = requests.delete(f"{API_URL}/attfilmes/{id_filme}, {nova_nota}")
+        dados = {
+            "id_filme": id_filme,
+            "nova_nota": nova_nota
+        }
+        response = requests.put(f"{API_URL}/filmes/{id_filme}", params=dados)
         if response.status_code == 200:
-            st.success("Filme atualizado com sucesso!")
+            data = response.json()
+            if "erro" not in data:
+                st.success("Filme atualizado com sucesso!")
+            else:
+                st.warning(data["erro"])
         else:
-            st.error("Erro ao atualizar a nota do filme.")
+            st.error("Erro ao atulizar o filme.")
+        
